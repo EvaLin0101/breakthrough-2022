@@ -50,10 +50,10 @@ jobs:
       # Checkout gallery code and get packages.
       - name: Checkout gallery code
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
-      - run: flutter pub get
         with:
           working-directory: t_move
-
+      - run: flutter pub get
+        
       # Setup Ruby, Bundler, and Gemfile dependencies
       - name: Setup Fastlane
         uses: ruby/setup-ruby@eae47962baca661befdfd24e4d6c34ade04858f7
