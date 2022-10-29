@@ -3,6 +3,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:stripe_example/.env.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
+import 'package:stripe_example/tAndC.dart';
 
 
 
@@ -356,14 +357,6 @@ class _trainTicketPage extends State<trainTicketPage>
                           ],
                         ),
                       ), SizedBox(height : 12),
-                      Text('詳情請見T&C', textAlign: TextAlign.center, style: TextStyle(
-                          color: Color.fromRGBO(97, 183, 172, 1),
-                          fontFamily: 'Inter',
-                          fontSize: 16,
-                          letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-                          fontWeight: FontWeight.normal,
-                          height: 1
-                      ),),
                     ],
                   ),
                 ), SizedBox(height : 10),
@@ -383,9 +376,9 @@ class _trainTicketPage extends State<trainTicketPage>
 
                       children: <Widget>[GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Page()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => tAndC()));
                         },
-                        child: Text('立即訂票', textAlign: TextAlign.center, style: TextStyle(
+                        child: Text('詳情請見T&C', textAlign: TextAlign.center, style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 1),
                             fontFamily: 'Inter',
                             fontSize: 16,
