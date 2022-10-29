@@ -1,5 +1,10 @@
 name: Deploy to Play Store
 on:
+  push:
+    branches:
+      - main
+    tags:        
+      - v*
   # Enable manual run
   workflow_dispatch:
     inputs:
@@ -34,6 +39,7 @@ jobs:
         flutter build apk
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
+      if: github.ref_type == 'tag'
       with:
         artifacts: "t_move/build/app/outputs/flutter-apk/app-release.apk"
         token: ${{ secrets.TOKEN }}
