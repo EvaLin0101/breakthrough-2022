@@ -38,6 +38,7 @@ jobs:
         artifacts: "t_move/build/app/outputs/flutter-apk/app-release.apk"
         token: ${{ secrets.TOKEN }}
   fastlane-deploy:
+    needs: build-apk
     runs-on: ubuntu-latest
     steps:
       # Set up Flutter.
@@ -50,8 +51,9 @@ jobs:
       # Checkout gallery code and get packages.
       - name: Checkout gallery code
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
-      - run: cd t_move
-      - run: flutter pub get
+      - run: |
+          cd t_move
+          flutter pub get
         
       # Setup Ruby, Bundler, and Gemfile dependencies
       - name: Setup Fastlane
