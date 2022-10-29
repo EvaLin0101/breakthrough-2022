@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:stripe_example/trainTicketPage.dart';
 
 class NewSwanstoneCastleTicketPage extends StatefulWidget {
   @override
@@ -237,22 +238,19 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: orderTicket,
-                        child: Text(
-                          '立即購買車票',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              fontFamily: 'Inter',
-                              fontSize: 16,
-                              letterSpacing:
-                                  0 /*percentages not used in flutter. defaulting to zero*/,
-                              fontWeight: FontWeight.normal,
-                              height: 1),
-                        ),
-                      ),
+                    children: <Widget>[GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => trainTicketPage()));
+                      },
+                      child: Text('立即訂車票', textAlign: TextAlign.center, style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          fontFamily: 'Inter',
+                          fontSize: 16,
+                          letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
+                          fontWeight: FontWeight.normal,
+                          height: 1
+                      ),),
+                    ),
                     ],
                   ),
                 ),
