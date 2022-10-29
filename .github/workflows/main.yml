@@ -27,10 +27,11 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '3.3.5'
-    - run: cd t_move
-    - run: flutter pub get
-    - run: flutter test
-    - run: flutter build apk
+    - run: |
+        cd t_move
+        flutter pub get
+        flutter test
+        flutter build apk
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
       with:
