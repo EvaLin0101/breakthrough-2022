@@ -8,7 +8,14 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'newSwanstoneCastleTicketPage.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
+  Stripe.merchantIdentifier = 'merchant.flutter.stripe.test';
+  Stripe.urlScheme = 'flutterstripe';
+  await Stripe.instance.applySettings();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
