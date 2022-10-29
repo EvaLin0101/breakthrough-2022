@@ -235,8 +235,8 @@ class _HomePageState extends State<HomePage> {
 
 final exampleAppTheme = ThemeData(
   colorScheme: ColorScheme.light(
-    primary: Color(0xff6058F7),
-    secondary: Color(0xff6058F7),
+    primary: Color(0xff61b7ac),
+    secondary: Color(0xff61b7ac),
   ),
   primaryColor: Colors.white,
   appBarTheme: AppBarTheme(elevation: 1),
