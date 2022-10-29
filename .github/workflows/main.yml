@@ -27,16 +27,15 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '3.3.5'
-        working-directory: t_move
+    - run: cd t_move
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+        artifacts: "t_move/build/app/outputs/flutter-apk/app-release.apk"
         token: ${{ secrets.TOKEN }}
-        working-directory: t_move
   fastlane-deploy:
     runs-on: ubuntu-latest
     steps:
