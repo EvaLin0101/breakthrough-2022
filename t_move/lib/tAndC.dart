@@ -44,8 +44,8 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
     child: Row(
-    mainAxisSize: MainAxisSize.max,
-
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
     children: <Widget>[
     Transform.rotate(
     angle: 1,
@@ -118,7 +118,7 @@ class _tAndC extends State<tAndC>
     fontWeight: FontWeight.normal,
     height: 1
     ),), SizedBox(height : 21),
-    Text('新天鵝堡行程套票 €200：新天鵝堡門票1張，德鐵車票1張 (慕尼黑中央車站 到  菲森車站)\n\n '
+    Text('新天鵝堡行程套票 €250：新天鵝堡門票1張，德鐵車票1張 (慕尼黑中央車站 到  菲森車站)\n\n '
         '一次限購一組，多組訂票請多次申請。本次訂購為明日行程，慕尼黑早上8點的車票，新天鵝堡入場時間為下午2點到下午4點。 \n\n '
         '出票時間為行程前一小時Email寄出,請注意你的郵件信箱。\n\n '
         '確切場次與車票，請依據信件上的時間為準。\n\n '
