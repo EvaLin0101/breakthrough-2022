@@ -390,6 +390,55 @@ class _trainTicketPage extends State<trainTicketPage>
                       ],
                     ),
                   ),
+                  Container(
+                    width: 343,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(100),
+                        topRight: Radius.circular(100),
+                        bottomLeft: Radius.circular(100),
+                        bottomRight: Radius.circular(100),
+                      ),
+                      color: Color.fromRGBO(252, 133, 115, 1),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () => {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => NoWebhookPaymentScreen()),
+                            )
+                          },
+                          child: Text(
+                            '立即訂票',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                letterSpacing:
+                                0 /*percentages not used in flutter. defaulting to zero*/,
+                                fontWeight: FontWeight.normal,
+                                height: 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
