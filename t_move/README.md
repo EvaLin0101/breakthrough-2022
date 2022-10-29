@@ -1,16 +1,27 @@
-# t_move
+# Stripe project example
 
-A new Flutter project.
+Demonstrates how to use the stripe plugin.
 
-## Getting Started
+## Run the example app
 
-This project is a starting point for a Flutter application.
+- Install the dependencies
+  - `flutter pub get`
+- Set up env vars for the flutter app and a local backend.
+  - [Get your test Stripe API keys](https://stripe.com/docs/keys)
+  - `cp lib/.env.example.dart lib/.env.dart` and set your Stripe publishable key.
+  - `cp server/.env.example server/.env` and set the variable values in your newly created `.env` file.
+- Install the server dependencies: `npm install` or `yarn --cwd "server"`
+- Start the example
+  - Terminal 1: `npm start` or `yarn --cwd "server" start`
+  - Terminal 2: `flutter run`
 
-A few resources to get you started if this is your first Flutter project:
+##### Additional steps when using a real device
+The example app uses a local server in your laptop and the endpoints are expected to work in local emulators. 
+If you want to test this project in a real device you should update the `config.dart` file with your computer ip address
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+##### Additional steps for webhook forwarding
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Install the `stripe-cli`](https://stripe.com/docs/stripe-cli)
+- Run `stripe listen --forward-to localhost:4242/webhook`
+
+
