@@ -34,9 +34,12 @@ jobs:
         flutter-version: '3.3.5'
     - run: |
         cd t_move
+        envsubst '${STRIPE_PUBLISHABLE_KEY}' < lib/example.env.dart > lib/.env.dart
         flutter pub get
         flutter test
         flutter build apk
+      env:
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
       if: github.ref_type == 'tag'
