@@ -39,6 +39,13 @@ jobs:
         flutter build apk
       env:
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+    - name: upload artifact to Firebase App Distribution
+      uses: wzieba/Firebase-Distribution-Github-Action@v1
+      with:
+        appId: ${{secrets.FIREBASE_APP_ID}}
+        serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+        groups: testers
+        file: t_move/build/app/outputs/flutter-apk/app-release.apk
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
       if: github.ref_type == 'tag'
