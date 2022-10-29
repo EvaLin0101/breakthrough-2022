@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:stripe_example/.env.dart';
-import 'screens/screens.dart';
-import 'widgets/dismiss_focus_overlay.dart';
-import 'package:flutter/material.dart';
+import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = stripePublishableKey;
@@ -18,12 +17,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DismissFocusOverlay(
-      child: MaterialApp(
-        theme: exampleAppTheme,
-        home: HomePage(),
-        navigatorObservers: [],
-      ),
+    return  MaterialApp(
+      theme: exampleAppTheme,
+      home: HomePage(),
+      navigatorObservers: [],
     );
   }
 }
@@ -170,14 +167,18 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[Text('立即訂票', textAlign: TextAlign.center, style: TextStyle(
+                    children: <Widget>[GestureDetector(
+                      onTap: () => {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoWebhookPaymentScreen()),)
+                      },
+                      child:Text('立即訂票', textAlign: TextAlign.center, style: TextStyle(
                         color: Color.fromRGBO(255, 255, 255, 1),
                         fontFamily: 'Inter',
                         fontSize: 16,
                         letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
                         fontWeight: FontWeight.normal,
                         height: 1
-                    ),),
+                    ),),),
                     ],
                   ),
                 ),
