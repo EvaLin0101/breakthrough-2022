@@ -100,14 +100,10 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
       if (paymentIntentResult['clientSecret'] != null &&
           paymentIntentResult['requiresAction'] == null) {
         // Payment succedeed
+
         var reference = (paymentIntentResult['clientSecret'] as String).split('_secret_')[0];
-        await launchUrl(Uri.parse("mailto:baluce@gmail.com?subject=請協助出票&body=已經付款成功請協助出票 ($reference)"));
-
-        await launchUrl(Uri.parse("mailto:<email address>?subject=<subject>&body=<body>"));
-
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content:
-                Text('Success!: The payment was confirmed successfully!')));
+        launchUrl(Uri.parse("mailto:baluce@gmail.com?subject=請協助出票&body=已經付款成功請協助出票 ($reference)"));
+        Navigator.of(context).pop(true);
         return;
       }
 
