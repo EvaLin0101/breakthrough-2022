@@ -8,6 +8,7 @@ import 'package:stripe_example/utils.dart';
 import 'package:stripe_example/widgets/example_scaffold.dart';
 import 'package:stripe_example/widgets/loading_button.dart';
 import 'package:stripe_example/widgets/response_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NoWebhookPaymentScreen extends StatefulWidget {
   @override
@@ -115,6 +116,8 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
         items: ['id-1'],
       );
 
+
+
       if (paymentIntentResult['error'] != null) {
         // Error during creating or confirming Intent
         ScaffoldMessenger.of(context).showSnackBar(
@@ -125,6 +128,8 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
       if (paymentIntentResult['clientSecret'] != null &&
           paymentIntentResult['requiresAction'] == null) {
         // Payment succedeed
+
+        await launchUrl(Uri.parse("mailto:<email address>?subject=<subject>&body=<body>"));
 
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content:
