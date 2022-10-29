@@ -242,7 +242,7 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (_) => trainTicketPage()));
                       },
-                      child: Text('立即訂車票', textAlign: TextAlign.center, style: TextStyle(
+                      child: Text('立即訂套票', textAlign: TextAlign.center, style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
                           fontFamily: 'Inter',
                           fontSize: 16,
