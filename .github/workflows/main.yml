@@ -37,6 +37,7 @@ jobs:
         envsubst '${STRIPE_PUBLISHABLE_KEY}' < lib/.env.example.dart > lib/.env.dart
         flutter pub get
         flutter build apk
+        mv t_move/build/app/outputs/flutter-apk/app-release.apk t_move/build/app/outputs/flutter-apk/tmove.apk
       env:
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
     - name: upload artifact to Firebase App Distribution
@@ -45,12 +46,12 @@ jobs:
         appId: ${{secrets.FIREBASE_APP_ID}}
         serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
         groups: testers
-        file: t_move/build/app/outputs/flutter-apk/app-release.apk
+        file: t_move/build/app/outputs/flutter-apk/tmove.apk
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
       if: github.ref_type == 'tag'
       with:
-        artifacts: "t_move/build/app/outputs/flutter-apk/app-release.apk"
+        artifacts: "t_move/build/app/outputs/flutter-apk/tmove.apk"
         token: ${{ secrets.TOKEN }}
   fastlane-deploy:
     needs: build-apk

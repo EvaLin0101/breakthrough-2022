@@ -36,7 +36,6 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
   Widget build(BuildContext context) {
     return ExampleScaffold(
       title: 'Card Field',
-      tags: ['No Webhook'],
       padding: EdgeInsets.symmetric(horizontal: 16),
       children: [
         CardField(
@@ -48,34 +47,7 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
           onPressed: controller.complete ? _handlePayPress : null,
         ),
         SizedBox(height: 20),
-        Divider(),
-        Container(
-          padding: EdgeInsets.all(8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OutlinedButton(
-                onPressed: () => controller.focus(),
-                child: Text('Focus'),
-              ),
-              SizedBox(width: 12),
-              OutlinedButton(
-                onPressed: () => controller.blur(),
-                child: Text('Blur'),
-              ),
-              SizedBox(width: 12),
-              OutlinedButton(
-                onPressed: () => controller.clear(),
-                child: Text('Clear'),
-              ),
-            ],
-          ),
-        ),
-        Divider(),
-        SizedBox(height: 20),
-        ResponseCard(
-          response: controller.details.toJson().toPrettyString(),
-        )
+        SizedBox(height: 20)
       ],
     );
   }
@@ -128,6 +100,10 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
       if (paymentIntentResult['clientSecret'] != null &&
           paymentIntentResult['requiresAction'] == null) {
         // Payment succedeed
+        var reference = (paymentIntentResult['clientSecret'] as String).split('_secret_')[0];
+        await launchUrl(Uri.parse("mailto:baluce@gmail.com?subject=請協助出票&body=已經付款成功請協助出票 ($reference)"));
+
+        await launchUrl(Uri.parse("mailto:<email address>?subject=<subject>&body=<body>"));
 
         await launchUrl(Uri.parse("mailto:<email address>?subject=<subject>&body=<body>"));
 
@@ -212,6 +188,7 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
         'items': items
       }),
     );
+    debugPrint(response.body);
     return json.decode(response.body);
   }
 }
