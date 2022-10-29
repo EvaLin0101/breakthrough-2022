@@ -1,1 +1,10 @@
 t_move/lib/.env.dart
+.idea/.gitignore
+.idea/breakthrough-2022.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/libraries/Dart_Packages.xml
+.idea/libraries/Dart_SDK.xml
+t_move/linux/flutter/generated_plugin_registrant.cc
+t_move/linux/flutter/generated_plugin_registrant.h
+t_move/linux/flutter/generated_plugins.cmake
