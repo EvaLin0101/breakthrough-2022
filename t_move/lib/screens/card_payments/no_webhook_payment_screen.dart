@@ -36,7 +36,6 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
   Widget build(BuildContext context) {
     return ExampleScaffold(
       title: 'Card Field',
-      tags: ['No Webhook'],
       padding: EdgeInsets.symmetric(horizontal: 16),
       children: [
         CardField(
@@ -48,34 +47,7 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
           onPressed: controller.complete ? _handlePayPress : null,
         ),
         SizedBox(height: 20),
-        Divider(),
-        Container(
-          padding: EdgeInsets.all(8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OutlinedButton(
-                onPressed: () => controller.focus(),
-                child: Text('Focus'),
-              ),
-              SizedBox(width: 12),
-              OutlinedButton(
-                onPressed: () => controller.blur(),
-                child: Text('Blur'),
-              ),
-              SizedBox(width: 12),
-              OutlinedButton(
-                onPressed: () => controller.clear(),
-                child: Text('Clear'),
-              ),
-            ],
-          ),
-        ),
-        Divider(),
-        SizedBox(height: 20),
-        ResponseCard(
-          response: controller.details.toJson().toPrettyString(),
-        )
+        SizedBox(height: 20)
       ],
     );
   }

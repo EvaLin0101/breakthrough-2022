@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                               ),Positioned(
                                   top: 16,
                                   left: 284,
-                                  child: Text('Show', textAlign: TextAlign.right, style: TextStyle(
+                                  child: Text('', textAlign: TextAlign.right, style: TextStyle(
                                       color: Color.fromRGBO(93, 176, 116, 1),
                                       fontFamily: 'Inter',
                                       fontSize: 16,
