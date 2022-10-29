@@ -179,11 +179,11 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () => {
-                          Navigator.of(context).push(
+                        onTap: () async {
+                          var success = await Navigator.of(context).push<bool>(
                             MaterialPageRoute(
                                 builder: (context) => NoWebhookPaymentScreen(buyerNameController.text)),
-                          )
+                          );
                         },
                         child: Text(
                           '立即訂票',
