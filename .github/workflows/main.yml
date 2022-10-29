@@ -36,7 +36,6 @@ jobs:
         cd t_move
         envsubst '${STRIPE_PUBLISHABLE_KEY}' < lib/example.env.dart > lib/.env.dart
         flutter pub get
-        flutter test
         flutter build apk
       env:
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
