@@ -11,12 +11,24 @@ import 'package:stripe_example/widgets/response_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoWebhookPaymentScreen extends StatefulWidget {
+  late String buyerName;
+
+  NoWebhookPaymentScreen(String buyerName){
+    this.buyerName = buyerName;
+  }
+
   @override
-  _NoWebhookPaymentScreenState createState() => _NoWebhookPaymentScreenState();
+  _NoWebhookPaymentScreenState createState() => _NoWebhookPaymentScreenState(buyerName);
 }
 
 class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
   final controller = CardEditController();
+
+  late String buyerName;
+
+  _NoWebhookPaymentScreenState(String buyerName){
+    this.buyerName = buyerName;
+  }
 
   @override
   void initState() {
@@ -102,7 +114,8 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
         // Payment succedeed
 
         var reference = (paymentIntentResult['clientSecret'] as String).split('_secret_')[0];
-        launchUrl(Uri.parse("mailto:baluce@gmail.com?subject=請協助出票&body=已經付款成功請協助出票 ($reference)"));
+        launchUrl(Uri.parse("mailto:baluce@gmail.com?subject=請協助出票&body=已經付款成功請協助出票 ($reference)\n"
+            "訂購者姓名：$buyerName"));
         Navigator.of(context).pop(true);
         return;
       }

@@ -20,11 +20,13 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
     // var asyncKey = client.getSolutions("BERLIN", "FRANKFURT", "2022-10-30", "10:00", 1, 0);
     // print(asyncKey);
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => NoWebhookPaymentScreen()));
+        MaterialPageRoute(builder: (context) => NoWebhookPaymentScreen("")));
   }
 
   @override
   Widget build(BuildContext context) {
+    final buyerNameController = TextEditingController();
+
     // Figma Flutter Generator HomepageWidget - FRAME - VERTICAL
     return Scaffold(
         body: Container(
@@ -96,27 +98,13 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                           ),
                           child: Stack(children: <Widget>[
                             TextField(
+                              controller: buyerNameController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: '訂購人名稱',
                               ),
                               style: TextStyle(color: Colors.black),
                             ),
-                            // Positioned(
-                            //     top: 16,
-                            //     left: 16,
-                            //     child: Text(
-                            //       '訂購人名稱',
-                            //       textAlign: TextAlign.left,
-                            //       style: TextStyle(
-                            //           color: Color.fromRGBO(189, 189, 189, 1),
-                            //           fontFamily: 'Inter',
-                            //           fontSize: 16,
-                            //           letterSpacing:
-                            //               0 /*percentages not used in flutter. defaulting to zero*/,
-                            //           fontWeight: FontWeight.normal,
-                            //           height: 1),
-                            //     )),
                             Positioned(
                                 top: 16,
                                 left: 284,
@@ -194,7 +182,7 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                         onTap: () => {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => NoWebhookPaymentScreen()),
+                                builder: (context) => NoWebhookPaymentScreen(buyerNameController.text)),
                           )
                         },
                         child: Text(
