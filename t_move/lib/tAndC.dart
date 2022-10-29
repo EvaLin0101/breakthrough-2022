@@ -27,7 +27,7 @@ class _tAndC extends State<tAndC>
       ),
       padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
 
           children: <Widget>[Container(
       decoration: BoxDecoration(
@@ -35,7 +35,7 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
     child: Row(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: MainAxisSize.max,
 
     children: <Widget>[
     Container(
@@ -44,7 +44,7 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
     child: Row(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: MainAxisSize.max,
 
     children: <Widget>[
     Transform.rotate(
@@ -92,7 +92,7 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
     child: Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: MainAxisSize.max,
 
     children: <Widget>[Container(
     decoration: BoxDecoration(
@@ -100,7 +100,7 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 18, vertical: 16),
     child: Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: MainAxisSize.max,
 
     children: <Widget>[Container(
     decoration: BoxDecoration(
@@ -108,7 +108,7 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 0, vertical: 24),
     child: Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: MainAxisSize.max,
 
     children: <Widget>[Text('訂票注意事項', textAlign: TextAlign.center, style: TextStyle(
     color: Color.fromRGBO(0, 0, 0, 1),
@@ -151,7 +151,7 @@ class _tAndC extends State<tAndC>
     ),
     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
     child: Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: MainAxisSize.max,
 
     children: <Widget>[Text('返回訂票', textAlign: TextAlign.center, style: TextStyle(
     color: Color.fromRGBO(255, 255, 255, 1),

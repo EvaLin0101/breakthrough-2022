@@ -106,7 +106,7 @@ class _trainTicketPage extends State<trainTicketPage>
                           ),
                         )
                     ), SizedBox(height : 12),
-                      Text('新天鵝套票 x 1 : €200', textAlign: TextAlign.center, style: TextStyle(
+                      Text('新天鵝套票 x 1 : €250', textAlign: TextAlign.center, style: TextStyle(
                           color: Color.fromRGBO(97, 183, 172, 1),
                           fontFamily: 'Inter',
                           fontSize: 24,
