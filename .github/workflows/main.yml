@@ -34,7 +34,7 @@ jobs:
         flutter-version: '3.3.5'
     - run: |
         cd t_move
-        envsubst '${STRIPE_PUBLISHABLE_KEY}' < lib/example.env.dart > lib/.env.dart
+        envsubst '${STRIPE_PUBLISHABLE_KEY}' < lib/.env.example.dart > lib/.env.dart
         flutter pub get
         flutter build apk
       env:
