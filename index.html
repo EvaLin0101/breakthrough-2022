@@ -20,14 +20,15 @@
           margin: 0;
           padding: 0;
         }
-        .wrapper {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            background-image: url(img/footer.png);
+        body{
+          background-image: url(img/footer.png);
             background-position: bottom center;
             background-size: 130%;
             background-repeat: no-repeat;
+        }
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
             min-height: 100vh;
         }
         .section_body {
@@ -36,6 +37,7 @@
           align-items: center;
           justify-content: center;
           background-color: rgba(255,255,255,.7);
+          padding: 10px 20px;
         }
         .info {
           color: #fff;
@@ -48,7 +50,8 @@
           border-radius: 4px;
           background-color: #61B7AC;
           border: none;
-          padding: 2px 6px;
+          padding: 4px 8px;
+          margin-top: 4px;
         }
         .qrcode {
           flex-grow: 0;
@@ -56,12 +59,13 @@
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          max-width: 55%;
         }
         .mobile {
           margin-left: 10px;
           flex-shrink: 0;
           width: 100%;
-          max-width: 28vw;
+          max-width: 28%;
           transform: translateY(4px);
         }
         .function {
@@ -74,31 +78,35 @@
         }
         .function img {
           margin: 0 4px;
+          width: 22%;
         }
         h2 {
-          color: #284B63;
+          color: #61B7AC;
           font-size: 18px;
+          font-weight: 900;
         }
         p {
           color: #284B63;
           font-size: 14px;
           padding: 0 8px;
+          font-weight: 700;
         }
         .content {
+          text-align: center;
           background-color: rgba(255,255,255,.7);
-          padding: 10px 0;
+          padding: 10px 20px;
         }
     </style>
 </head>
   <body>
     <div class="wrapper">
           <div class="section_header">
-            <img style="width:100%;" class="qrcode" src="img/banner.png">
+            <img style="width:100%;" src="img/banner.png">
             <div class="function">
-              <img style="width:22vw" src="img/icon1.png">
-              <img style="width:22vw" src="img/icon2.png">
-              <img style="width:22vw" src="img/icon3.png">
-              <img style="width:22vw" src="img/icon4.png">
+              <img src="img/icon1.png">
+              <img src="img/icon2.png">
+              <img src="img/icon3.png">
+              <img src="img/icon4.png">
             </div>
             
             <div class="section_body">
