@@ -19,9 +19,9 @@ class _NewSwanstoneCastleTicketPageState
 
   @override
   Widget build(BuildContext context) {
-    final buyerFirstNameController = TextEditingController();
-    final buyerLastNameController = TextEditingController();
-    final buyerEmailController = TextEditingController();
+    final _buyerGivenNameController = TextEditingController();
+    final _buyerSurnameNameController = TextEditingController();
+    final _buyerEmailController = TextEditingController();
 
     // Figma Flutter Generator HomepageWidget - FRAME - VERTICAL
     return Scaffold(
@@ -81,62 +81,77 @@ class _NewSwanstoneCastleTicketPageState
                       ),
                       SizedBox(height: 12),
                       Container(
-                          width: 343,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8),
-                            ),
-                            color: Color.fromRGBO(241, 241, 241, 1),
-                          ),
-                          child: Stack(children: <Widget>[
-                            TextField(
-                              controller: buyerFirstNameController,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'First Name',
-                              ),
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            Positioned(
-                                top: 16,
-                                left: 284,
-                                child: Text(
-                                  '',
-                                  textAlign: TextAlign.right,
+                        decoration: BoxDecoration(),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 0, vertical: 0),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8),
+                                    topRight: Radius.circular(8),
+                                    bottomLeft: Radius.circular(8),
+                                    bottomRight: Radius.circular(8),
+                                  ),
+                                  color: Color.fromRGBO(241, 241, 241, 1),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 15),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: '姓氏',
+                                  ),
+                                  controller: _buyerSurnameNameController,
+                                  textAlign: TextAlign.left,
                                   style: TextStyle(
-                                      color: Color.fromRGBO(93, 176, 116, 1),
+                                      color:
+                                      Color.fromRGBO(189, 189, 189, 1),
                                       fontFamily: 'Inter',
                                       fontSize: 16,
                                       letterSpacing:
-                                          0 /*percentages not used in flutter. defaulting to zero*/,
+                                      0 /*percentages not used in flutter. defaulting to zero*/,
                                       fontWeight: FontWeight.normal,
                                       height: 1),
-                                )),
-                          ])),
-                      SizedBox(height: 10),
-                      Container(
-                        width: 343,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                          color: Color.fromRGBO(241, 241, 241, 1),
-                        ),
-                        child: TextField(
-                          controller: buyerLastNameController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: 'Last Name',
-                          ),
-                          style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8),
+                                    topRight: Radius.circular(8),
+                                    bottomLeft: Radius.circular(8),
+                                    bottomRight: Radius.circular(8),
+                                  ),
+                                  color: Color.fromRGBO(241, 241, 241, 1),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 15),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: '名字',
+                                  ),
+                                  controller: _buyerGivenNameController,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color:
+                                      Color.fromRGBO(189, 189, 189, 1),
+                                      fontFamily: 'Inter',
+                                      fontSize: 16,
+                                      letterSpacing:
+                                      0 /*percentages not used in flutter. defaulting to zero*/,
+                                      fontWeight: FontWeight.normal,
+                                      height: 1),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(height: 10),
@@ -153,7 +168,7 @@ class _NewSwanstoneCastleTicketPageState
                           color: Color.fromRGBO(241, 241, 241, 1),
                         ),
                         child: TextField(
-                          controller: buyerEmailController,
+                          controller: _buyerEmailController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Email',
@@ -222,9 +237,9 @@ class _NewSwanstoneCastleTicketPageState
                         onTap: () async {
                           context.push("/payment",
                               extra: OrderForm(
-                                givenName: buyerFirstNameController.text,
-                                surname: buyerLastNameController.text,
-                                email: buyerEmailController.text,
+                                givenName: _buyerGivenNameController.text,
+                                surname: _buyerSurnameNameController.text,
+                                email: _buyerEmailController.text,
                               ));
                         },
                         child: Text(
