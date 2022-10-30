@@ -5,11 +5,12 @@ import 'package:stripe_example/trainTicketPage.dart';
 
 class NewSwanstoneCastleTicketPage extends StatefulWidget {
   @override
-  _NewSwanstoneCastleTicketPageState createState() => _NewSwanstoneCastleTicketPageState();
+  _NewSwanstoneCastleTicketPageState createState() =>
+      _NewSwanstoneCastleTicketPageState();
 }
 
-class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketPage>
-{
+class _NewSwanstoneCastleTicketPageState
+    extends State<NewSwanstoneCastleTicketPage> {
   @override
   void initState() {
     super.initState();
@@ -25,7 +26,8 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
 
   @override
   Widget build(BuildContext context) {
-    final buyerNameController = TextEditingController();
+    final buyerFirstNameController = TextEditingController();
+    final buyerLastNameController = TextEditingController();
 
     // Figma Flutter Generator HomepageWidget - FRAME - VERTICAL
     return Scaffold(
@@ -98,10 +100,48 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                           ),
                           child: Stack(children: <Widget>[
                             TextField(
-                              controller: buyerNameController,
+                              controller: buyerFirstNameController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: '訂購人名稱',
+                                hintText: 'First Name',
+                              ),
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Positioned(
+                                top: 16,
+                                left: 284,
+                                child: Text(
+                                  '',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(93, 176, 116, 1),
+                                      fontFamily: 'Inter',
+                                      fontSize: 16,
+                                      letterSpacing:
+                                          0 /*percentages not used in flutter. defaulting to zero*/,
+                                      fontWeight: FontWeight.normal,
+                                      height: 1),
+                                )),
+                          ])),
+                      SizedBox(height: 10),
+                      Container(
+                          width: 343,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8),
+                            ),
+                            color: Color.fromRGBO(241, 241, 241, 1),
+                          ),
+                          child: Stack(children: <Widget>[
+                            TextField(
+                              controller: buyerLastNameController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Last Name',
                               ),
                               style: TextStyle(color: Colors.black),
                             ),
@@ -182,7 +222,8 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                         onTap: () async {
                           var success = await Navigator.of(context).push<bool>(
                             MaterialPageRoute(
-                                builder: (context) => NoWebhookPaymentScreen(buyerNameController.text)),
+                                builder: (context) => NoWebhookPaymentScreen(
+                                    '${buyerFirstNameController.text} ${buyerLastNameController.text}')),
                           );
                         },
                         child: Text(
@@ -211,35 +252,6 @@ class _NewSwanstoneCastleTicketPageState extends State<NewSwanstoneCastleTicketP
                       bottomLeft: Radius.circular(8),
                       bottomRight: Radius.circular(8),
                     ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(100),
-                      topRight: Radius.circular(100),
-                      bottomLeft: Radius.circular(100),
-                      bottomRight: Radius.circular(100),
-                    ),
-                    color: Color.fromRGBO(252, 133, 115, 1),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => trainTicketPage()));
-                      },
-                      child: Text('立即訂套票', textAlign: TextAlign.center, style: TextStyle(
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: 'Inter',
-                          fontSize: 16,
-                          letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-                          fontWeight: FontWeight.normal,
-                          height: 1
-                      ),),
-                    ),
-                    ],
                   ),
                 ),
               ],
