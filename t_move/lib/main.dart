@@ -7,6 +7,7 @@ import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.d
 import 'package:stripe_example/screens/payment_success.dart';
 import 'package:stripe_example/trainTicketPage.dart';
 
+import 'models/order_form.dart';
 import 'newSwanstoneCastleTicketPage.dart';
 
 Future<void> main() async {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         pageBuilder: (context, state) {
           return MaterialPage(
             fullscreenDialog: true,
-            child: NoWebhookPaymentScreen(""),
+            child: NoWebhookPaymentScreen(state.extra as OrderForm),
           );
         },
       ),

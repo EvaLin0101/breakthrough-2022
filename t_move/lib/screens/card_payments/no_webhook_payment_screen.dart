@@ -2,30 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:stripe_example/config.dart';
-import 'package:stripe_example/utils.dart';
+import 'package:stripe_example/models/order_form.dart';
 import 'package:stripe_example/widgets/example_scaffold.dart';
 import 'package:stripe_example/widgets/loading_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class NoWebhookPaymentScreen extends StatefulWidget {
-  late String buyerName;
+  final OrderForm form;
 
-  NoWebhookPaymentScreen(this.buyerName);
+  NoWebhookPaymentScreen(this.form);
 
   @override
-  _NoWebhookPaymentScreenState createState() => _NoWebhookPaymentScreenState(buyerName);
+  _NoWebhookPaymentScreenState createState() => _NoWebhookPaymentScreenState();
 }
 
 class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
   final controller = CardEditController();
-
-  late String buyerName;
-
-  _NoWebhookPaymentScreenState(String buyerName){
-    this.buyerName = buyerName;
-  }
 
   @override
   void initState() {
@@ -69,7 +63,7 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
     try {
       // 1. Gather customer billing information (ex. email)
       final billingDetails = BillingDetails(
-        email: 'email@stripe.com',
+        email: widget.form.email,
         phone: '+48888000888',
         address: Address(
           city: 'Houston',
@@ -97,8 +91,6 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
         items: ['id-1'],
       );
 
-
-
       if (paymentIntentResult['error'] != null) {
         // Error during creating or confirming Intent
         ScaffoldMessenger.of(context).showSnackBar(
@@ -110,10 +102,25 @@ class _NoWebhookPaymentScreenState extends State<NoWebhookPaymentScreen> {
           paymentIntentResult['requiresAction'] == null) {
         // Payment succedeed
 
-        var reference = (paymentIntentResult['clientSecret'] as String).split('_secret_')[0];
-        launchUrl(Uri.parse("mailto:baluce@gmail.com?subject=請協助出票&body=已經付款成功請協助出票 ($reference)\n"
-            "訂購者姓名：${widget.buyerName}"));
-        Navigator.of(context).pop(true);
+        var reference = (paymentIntentResult['clientSecret'] as String)
+            .split('_secret_')[0];
+        final response = await http.post(
+          Uri.parse('$kApiUrl/send-email'),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: json.encode({
+            'givenName': widget.form.givenName,
+            'surname': widget.form.surname,
+            'gender': widget.form.gender,
+            'email': widget.form.email,
+            'passportId': widget.form.passportId,
+            'referenceId': reference,
+          }),
+        );
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          GoRouter.of(context).go('/success');
+        }
         return;
       }
 

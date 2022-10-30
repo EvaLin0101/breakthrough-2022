@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
+
+import 'models/order_form.dart';
 
 class NewSwanstoneCastleTicketPage extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _NewSwanstoneCastleTicketPageState
   Widget build(BuildContext context) {
     final buyerFirstNameController = TextEditingController();
     final buyerLastNameController = TextEditingController();
+    final buyerEmailController = TextEditingController();
 
     // Figma Flutter Generator HomepageWidget - FRAME - VERTICAL
     return Scaffold(
@@ -117,42 +119,48 @@ class _NewSwanstoneCastleTicketPageState
                           ])),
                       SizedBox(height: 10),
                       Container(
-                          width: 343,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8),
-                            ),
-                            color: Color.fromRGBO(241, 241, 241, 1),
+                        width: 343,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                            bottomRight: Radius.circular(8),
                           ),
-                          child: Stack(children: <Widget>[
-                            TextField(
-                              controller: buyerLastNameController,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'Last Name',
-                              ),
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            Positioned(
-                                top: 16,
-                                left: 284,
-                                child: Text(
-                                  '',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(93, 176, 116, 1),
-                                      fontFamily: 'Inter',
-                                      fontSize: 16,
-                                      letterSpacing:
-                                          0 /*percentages not used in flutter. defaulting to zero*/,
-                                      fontWeight: FontWeight.normal,
-                                      height: 1),
-                                )),
-                          ])),
+                          color: Color.fromRGBO(241, 241, 241, 1),
+                        ),
+                        child: TextField(
+                          controller: buyerLastNameController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Last Name',
+                          ),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        width: 343,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                            bottomRight: Radius.circular(8),
+                          ),
+                          color: Color.fromRGBO(241, 241, 241, 1),
+                        ),
+                        child: TextField(
+                          controller: buyerEmailController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Email',
+                          ),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
                       SizedBox(height: 12),
                       Container(
                         decoration: BoxDecoration(),
@@ -212,14 +220,12 @@ class _NewSwanstoneCastleTicketPageState
                     children: <Widget>[
                       GestureDetector(
                         onTap: () async {
-                          var success = await Navigator.of(context).push<bool>(
-                            MaterialPageRoute(
-                                builder: (context) => NoWebhookPaymentScreen(
-                                    '${buyerFirstNameController.text} ${buyerLastNameController.text}')),
-                          );
-                          if (success ?? false) {
-                            context.go("/success");
-                          }
+                          context.push("/payment",
+                              extra: OrderForm(
+                                givenName: buyerFirstNameController.text,
+                                surname: buyerLastNameController.text,
+                                email: buyerEmailController.text,
+                              ));
                         },
                         child: Text(
                           '立即訂票',

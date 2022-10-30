@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stripe_example/tAndC.dart';
 
+import 'models/order_form.dart';
+
 class TrainTicketPage extends StatefulWidget {
   @override
   _trainTicketPage createState() => _trainTicketPage();
@@ -14,6 +16,8 @@ class _trainTicketPage extends State<TrainTicketPage> {
   final TextEditingController _birthday = TextEditingController();
   final TextEditingController _passportId = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  final TextEditingController _gender = TextEditingController();
+  final ValueNotifier<String> _genderValueNotifier = ValueNotifier("M");
 
   @override
   void initState() {
@@ -150,36 +154,82 @@ class _trainTicketPage extends State<TrainTicketPage> {
                                         'assets/images/bg.svg',
                                         semanticsLabel: 'bg')),
                                 Positioned(
-                                    top: 16,
-                                    left: 219,
-                                    child: Text(
-                                      '女性',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromRGBO(189, 189, 189, 1),
-                                          fontFamily: 'Inter',
-                                          fontSize: 16,
-                                          letterSpacing:
-                                              0 /*percentages not used in flutter. defaulting to zero*/,
-                                          fontWeight: FontWeight.normal,
-                                          height: 1),
-                                    )),
+                                  top: 16,
+                                  left: 219,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _genderValueNotifier.value = "F";
+                                    },
+                                    child: ValueListenableBuilder(
+                                      valueListenable: _genderValueNotifier,
+                                      builder: (context, value, _) => Container(
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          border: value == "F"
+                                              ? Border.all(color: Colors.black)
+                                              : Border.all(color: Colors.grey),
+                                        ),
+                                        child: Text(
+                                          '女性',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: _genderValueNotifier.value ==
+                                                    "F"
+                                                ? Color.fromRGBO(40, 75, 99, 1)
+                                                : Color.fromRGBO(
+                                                    189, 189, 189, 1),
+                                            fontFamily: 'Inter',
+                                            fontSize: 16,
+                                            letterSpacing:
+                                                0 /*percentages not used in flutter. defaulting to zero*/,
+                                            fontWeight: FontWeight.normal,
+                                            height: 1,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 Positioned(
-                                    top: 16,
-                                    left: 52,
-                                    child: Text(
-                                      '男性',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Color.fromRGBO(40, 75, 99, 1),
-                                          fontFamily: 'Inter',
-                                          fontSize: 16,
-                                          letterSpacing:
-                                              0 /*percentages not used in flutter. defaulting to zero*/,
-                                          fontWeight: FontWeight.normal,
-                                          height: 1),
-                                    )),
+                                  top: 16,
+                                  left: 52,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _genderValueNotifier.value = "M";
+                                    },
+                                    child: ValueListenableBuilder(
+                                        valueListenable: _genderValueNotifier,
+                                        builder: (context, value, _) {
+                                          return Container(
+                                            padding: EdgeInsets.all(5),
+                                            decoration: BoxDecoration(
+                                              border: value == "M"
+                                                  ? Border.all(
+                                                      color: Colors.black)
+                                                  : Border.all(
+                                                      color: Colors.grey),
+                                            ),
+                                            child: Text(
+                                              '男性',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: value == "M"
+                                                    ? Color.fromRGBO(
+                                                        40, 75, 99, 1)
+                                                    : Color.fromRGBO(
+                                                        189, 189, 189, 1),
+                                                fontFamily: 'Inter',
+                                                fontSize: 16,
+                                                letterSpacing:
+                                                    0 /*percentages not used in flutter. defaulting to zero*/,
+                                                fontWeight: FontWeight.normal,
+                                                height: 1,
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                ),
                               ])),
                           SizedBox(height: 12),
                           Container(
@@ -416,7 +466,16 @@ class _trainTicketPage extends State<TrainTicketPage> {
                         children: <Widget>[
                           GestureDetector(
                             onTap: () {
-                              context.push("/payment");
+                              context.push(
+                                "/payment",
+                                extra: OrderForm(
+                                  givenName: _givenName.text,
+                                  surname: _surname.text,
+                                  gender: _genderValueNotifier.value,
+                                  passportId: _passportId.text,
+                                  email: _email.text,
+                                ),
+                              );
                             },
                             child: Text(
                               '立即訂票',

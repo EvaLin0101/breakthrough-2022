@@ -3,7 +3,7 @@
 import env from 'dotenv';
 import bodyParser from 'body-parser';
 import express from 'express';
-
+import sgMail from '@sendgrid/mail';
 import Stripe from 'stripe';
 import { generateResponse } from './utils';
 // Replace if using a different env file or config.
@@ -13,6 +13,7 @@ env.config({ path: './.env' });
 const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY || '';
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY || '';
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
+const sendGridKey = process.env.SENDGRID_API_KEY || '';
 
 const app = express();
 
@@ -330,6 +331,46 @@ app.post(
       // See https://stripe.com/docs/declines/codes for more.
       return res.send({ error: e.message });
     }
+  }
+);
+
+app.post(
+  '/send-email',
+  async (
+    req: express.Request,
+    res: express.Response
+  ): Promise<express.Response<any>> => {
+    const {
+      givenName,
+      surname,
+      gender,
+      email,
+      passportId,
+      referenceId,
+    }: {
+      givenName: string,
+      surname: string,
+      gender: string,
+      email: string,
+      passportId: string,
+      referenceId: string,
+    } = req.body;
+
+    sgMail.setApiKey(sendGridKey)
+    const msg = {
+      to: email, // Change to your recipient
+      bcc: 'baluce@gmail.com,neo@debuguy.dev',
+      from: 't-move@mail.debuguy.dev', // Change to your verified sender
+      subject: '訂票成功',
+      html: "<p>"+
+      "name: " + givenName + " " + surname + "<br/>" +
+      "passport id: " + passportId + "<br/>" +
+      "gender: " + gender + "<br/>" +
+      "referenceId: " + referenceId +
+      "</p>",
+    }
+
+    return res.send(await sgMail.send(msg));
   }
 );
 
