@@ -64,9 +64,40 @@
         .mobile {
           margin-left: 10px;
           flex-shrink: 0;
-          width: 100%;
           max-width: 28%;
           transform: translateY(4px);
+        }
+        .mobile img {
+          width: 100%;
+        }
+        
+        .anilist {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: none;
+        }
+        
+        .anilist img {
+          transform: scaleX(1);
+          position: absolute;
+        }
+        .anilist img:nth-child(5) {
+          animation: ani 1s linear 5s  none;
+        }
+        .anilist img:nth-child(4) {
+          animation: ani 1s linear 10s  none;
+        }
+        .anilist img:nth-child(3) {
+          animation: ani 1s linear 15s  none;
+        }
+        .anilist img:nth-child(2) {
+          animation: ani 1s linear 20s  none;
+        }
+        .anilist img:nth-child(1) {
+          animation: ani 1s linear 25s  none;
         }
         .function {
           display: flex;
@@ -96,6 +127,17 @@
           background-color: rgba(255,255,255,.7);
           padding: 10px 20px;
         }
+        @keyframes ani {
+          0% {
+            transform: scaleX(1);
+          };
+          2% {
+            transform: scaleX(0);
+          };
+          100% {
+            transform: scaleX(0);
+          };
+        }
     </style>
 </head>
   <body>
@@ -112,9 +154,21 @@
             <div class="section_body">
               <div class="qrcode">
                 <img style="width:100%; max-width: 50vw;" src="img/qrcode.png">
+                
                 <button class="info">點擊下載 T Move</button>
               </div>
-                <img class="mobile" src="img/mobile.png">
+              <div class="mobile">
+                <img  src="img/mobile.png">
+                <div class="anilist">
+                  <img style="width:100%" src="img/home.png">
+                  <img style="width:100%" src="img/planList.png">
+                  <img style="width:100%" src="img/ticket.png">
+                  <img style="width:100%" src="img/ticket-2.png">
+                  <img style="width:100%" src="img/success.png">
+                </div>
+
+              </div>
+                
             </div>
             <div class="content">
               <h2>T Move遨遊歐洲一手搞定!!</h2>
