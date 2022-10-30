@@ -420,7 +420,7 @@ class _trainTicketPage extends State<trainTicketPage>
                           onTap: () => {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => NoWebhookPaymentScreen()),
+                                  builder: (context) => NoWebhookPaymentScreen("")),
                             )
                           },
                           child: Text(
