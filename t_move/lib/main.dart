@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:stripe_example/.env.dart';
 import 'package:flutter/services.dart';
-import 'newSwanstoneCastleTicketPage.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
+import 'package:stripe_example/.env.dart';
+import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
+import 'package:stripe_example/screens/payment_success.dart';
+import 'package:stripe_example/trainTicketPage.dart';
+
+import 'newSwanstoneCastleTicketPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +28,24 @@ class MyApp extends StatelessWidget {
         },
       ),
       GoRoute(
-        path: '/payment',
+        path: '/bundle',
         builder: (BuildContext context, GoRouterState state) {
-          return Container();
+          return TrainTicketPage();
+        },
+      ),
+      GoRoute(
+        path: '/payment',
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            fullscreenDialog: true,
+            child: NoWebhookPaymentScreen(""),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/success',
+        builder: (BuildContext context, GoRouterState state) {
+          return PaymentSuccess();
         },
       ),
     ],

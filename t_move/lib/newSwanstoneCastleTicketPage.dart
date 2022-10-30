@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
 import 'package:flutter/services.dart';
-import 'package:stripe_example/trainTicketPage.dart';
+import 'package:go_router/go_router.dart';
+import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
 
 class NewSwanstoneCastleTicketPage extends StatefulWidget {
   @override
@@ -14,14 +14,6 @@ class _NewSwanstoneCastleTicketPageState
   @override
   void initState() {
     super.initState();
-  }
-
-  orderTicket() {
-    // var client  =  GrailApiClient(httpClient: http.Client(), baseUrl: "http://alpha.api.g2rail.com", apiKey: "fa656e6b99d64f309d72d6a8e7284953", secret: "9a52b1f7-7c96-4305-8569-1016a55048bc");
-    // var asyncKey = client.getSolutions("BERLIN", "FRANKFURT", "2022-10-30", "10:00", 1, 0);
-    // print(asyncKey);
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => NoWebhookPaymentScreen("")));
   }
 
   @override
@@ -225,6 +217,9 @@ class _NewSwanstoneCastleTicketPageState
                                 builder: (context) => NoWebhookPaymentScreen(
                                     '${buyerFirstNameController.text} ${buyerLastNameController.text}')),
                           );
+                          if (success ?? false) {
+                            context.go("/success");
+                          }
                         },
                         child: Text(
                           '立即訂票',
