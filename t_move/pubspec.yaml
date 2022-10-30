@@ -40,6 +40,7 @@ flutter:
     - assets/images/Asset131.png
     - assets/images/Image1.png
     - assets/images/bg.svg
+    - assets/images/tica_success.png
 
   fonts:
     - family: OtomanopeeOne
