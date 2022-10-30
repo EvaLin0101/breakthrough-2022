@@ -38,14 +38,17 @@
           background-color: rgba(255,255,255,.6);
         }
         .info {
-          color: #61B7AC;
+          color: #fff;
           flex-grow: 1;
           margin: 0;
           display: flex;
           justify-content: center;
           font-size: 14px;
           font-weight: 700;
-          transform: translateY(-4px);
+          border-radius: 4px;
+          background-color: #61B7AC;
+          border: none;
+          padding: 2px 6px;
         }
         .qrcode {
           flex-grow: 0;
@@ -58,7 +61,8 @@
           margin-left: 10px;
           flex-shrink: 0;
           width: 100%;
-          max-width: 26vw;
+          max-width: 28vw;
+          transform: translateY(4px);
         }
         .function {
           display: flex;
@@ -97,7 +101,7 @@
             <div class="section_body">
               <div class="qrcode">
                 <img style="width:100%; max-width: 50vw;" src="img/qrcode.png">
-                <p class="info">掃描下載 T Move</p>
+                <button class="info">點擊下載 T Move</button>
               </div>
                 <img class="mobile" src="img/mobile.png">
             </div>
