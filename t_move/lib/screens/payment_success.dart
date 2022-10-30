@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+
 class PaymentSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,8 @@ class PaymentSuccess extends StatelessWidget {
                           height: 155,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/tica_success.png'),
+                                image: AssetImage(
+                                    'assets/images/tica_success.png'),
                                 fit: BoxFit.fitWidth),
                           )),
                       SizedBox(height: 12),
@@ -101,7 +104,11 @@ class PaymentSuccess extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Text(
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          },
+                          child: Text(
                         '返回首頁',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -112,7 +119,7 @@ class PaymentSuccess extends StatelessWidget {
                                 0 /*percentages not used in flutter. defaulting to zero*/,
                             fontWeight: FontWeight.normal,
                             height: 1),
-                      ),
+                      )),
                     ],
                   ),
                 ),
