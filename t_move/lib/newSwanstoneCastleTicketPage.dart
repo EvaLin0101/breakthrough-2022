@@ -12,6 +12,10 @@ class NewSwanstoneCastleTicketPage extends StatefulWidget {
 
 class _NewSwanstoneCastleTicketPageState
     extends State<NewSwanstoneCastleTicketPage> {
+  final _buyerGivenNameController = TextEditingController();
+  final _buyerSurnameNameController = TextEditingController();
+  final _buyerEmailController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -19,10 +23,6 @@ class _NewSwanstoneCastleTicketPageState
 
   @override
   Widget build(BuildContext context) {
-    final _buyerGivenNameController = TextEditingController();
-    final _buyerSurnameNameController = TextEditingController();
-    final _buyerEmailController = TextEditingController();
-
     // Figma Flutter Generator HomepageWidget - FRAME - VERTICAL
     return Scaffold(
         body: Container(
@@ -82,8 +82,8 @@ class _NewSwanstoneCastleTicketPageState
                       SizedBox(height: 12),
                       Container(
                         decoration: BoxDecoration(),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0, vertical: 0),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -107,12 +107,11 @@ class _NewSwanstoneCastleTicketPageState
                                   controller: _buyerSurnameNameController,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                      color:
-                                      Color.fromRGBO(189, 189, 189, 1),
+                                      color: Color.fromRGBO(189, 189, 189, 1),
                                       fontFamily: 'Inter',
                                       fontSize: 16,
                                       letterSpacing:
-                                      0 /*percentages not used in flutter. defaulting to zero*/,
+                                          0 /*percentages not used in flutter. defaulting to zero*/,
                                       fontWeight: FontWeight.normal,
                                       height: 1),
                                 ),
@@ -140,12 +139,11 @@ class _NewSwanstoneCastleTicketPageState
                                   controller: _buyerGivenNameController,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                      color:
-                                      Color.fromRGBO(189, 189, 189, 1),
+                                      color: Color.fromRGBO(189, 189, 189, 1),
                                       fontFamily: 'Inter',
                                       fontSize: 16,
                                       letterSpacing:
-                                      0 /*percentages not used in flutter. defaulting to zero*/,
+                                          0 /*percentages not used in flutter. defaulting to zero*/,
                                       fontWeight: FontWeight.normal,
                                       height: 1),
                                 ),
