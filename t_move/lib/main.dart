@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:stripe_example/.env.dart';
-import 'package:stripe_example/screens/card_payments/no_webhook_payment_screen.dart';
-import 'package:stripe_example/screens/payment_success.dart';
-import 'api.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'newSwanstoneCastleTicketPage.dart';
+import 'package:go_router/go_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,15 +15,31 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final GoRouter _router = GoRouter(
+    routes: <GoRoute>[
+      GoRoute(
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) {
+          return NewSwanstoneCastleTicketPage();
+        },
+      ),
+      GoRoute(
+        path: '/payment',
+        builder: (BuildContext context, GoRouterState state) {
+          return Container();
+        },
+      ),
+    ],
+  );
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: exampleAppTheme,
-      home: NewSwanstoneCastleTicketPage(),
     );
   }
 }
