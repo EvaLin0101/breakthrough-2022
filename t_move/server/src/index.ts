@@ -355,11 +355,11 @@ app.post(
       passportId: string,
       referenceId: string,
     } = req.body;
-
+    console.log("sned to: " + email);
     sgMail.setApiKey(sendGridKey)
     const msg = {
       to: email, // Change to your recipient
-      bcc: 'baluce@gmail.com,neo@debuguy.dev',
+      cc: 'baluce@gmail.com',
       from: 't-move@mail.debuguy.dev', // Change to your verified sender
       subject: '訂票成功',
       html: "<p>"+
